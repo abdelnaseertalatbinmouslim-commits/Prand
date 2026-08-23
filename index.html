@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NASSER LUXURY | The Ultimate Collection</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Orbitron:wght@700;900&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --gold: #d4af37;
+            --gold-glow: rgba(212, 175, 55, 0.5);
+            --dark-bg: #050505;
+            --glass: rgba(10, 10, 10, 0.8);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+        body { background-color: var(--dark-bg); color: #fff; overflow-x: hidden; }
+
+        /* --- HEADER --- */
+        header {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 20px 0; text-align: center;
+        }
+
+        .brand-name {
+            font-family: 'Orbitron', sans-serif; font-size: 2.8rem; font-weight: 900;
+            color: var(--gold); text-transform: uppercase; letter-spacing: 6px;
+            text-shadow: 0 0 15px var(--gold-glow);
+        }
+
+        /* --- HERO VIDEO SECTION --- */
+        .hero {
+            position: relative; height: 85vh; margin-top: 70px;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden; border-bottom: 2px solid var(--gold);
+            background-color: #111; /* Fallback color */
+        }
+        
+        .hero video {
+            position: absolute; top: 50%; left: 50%;
+            min-width: 100%; min-height: 100%; width: auto; height: auto;
+            transform: translate(-50%, -50%); z-index: 1; opacity: 0.6;
+            object-fit: cover;
+        }
+        
+        .hero-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to top, var(--dark-bg) 0%, rgba(0,0,0,0.3) 100%); z-index: 2;
+        }
+
+        .hero-title { 
+            position: relative; z-index: 3; font-size: 5rem; font-weight: 900; 
+            letter-spacing: 12px; color: #fff; text-shadow: 0 10px 30px rgba(0,0,0,0.9);
+            text-align: center;
+        }
+
+        /* --- FILTERS --- */
+        .filters {
+            display: flex; justify-content: center; gap: 15px; padding: 40px 20px;
+            flex-wrap: wrap; background: var(--dark-bg);
+        }
+        .filter-btn {
+            background: transparent; color: #fff; border: 1px solid var(--gold);
+            padding: 12px 30px; border-radius: 4px; font-size: 0.9rem; cursor: pointer;
+            letter-spacing: 2px; text-transform: uppercase; font-weight: 700; transition: 0.3s;
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--gold); color: #000; box-shadow: 0 0 15px var(--gold-glow);
+        }
+
+        /* --- GRID --- */
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+        .products-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 35px;
+        }
+
+        /* --- CARDS (MOCKUPS ONLY) --- */
+        .glass-card {
+            background: var(--glass); border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 10px; padding: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+            transition: 0.4s; display: flex; flex-direction: column;
+        }
+        .glass-card:hover {
+            transform: translateY(-10px); border-color: var(--gold);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.15);
+        }
+
+        .image-container { perspective: 1000px; margin-bottom: 20px; overflow: hidden; border-radius: 8px; background: #0a0a0a; }
+        .product-img {
+            width: 100%; height: 350px; object-fit: contain;
+            transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover .product-img { transform: scale(1.1) rotate(2deg); }
+
+        .product-title { font-size: 1.2rem; font-weight: 900; color: #fff; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+        .product-desc { 
+            font-family: 'Cairo', sans-serif; font-size: 0.95rem; color: #888; 
+            margin-bottom: 15px; direction: rtl; line-height: 1.5; flex-grow: 1;
+        }
+        .product-price { font-size: 1.5rem; color: var(--gold); margin-bottom: 20px; font-weight: 700; }
+
+        /* --- BUTTONS --- */
+        .btn {
+            display: block; width: 100%; padding: 12px; border-radius: 4px;
+            font-size: 0.9rem; font-weight: 700; text-decoration: none;
+            text-align: center; transition: 0.3s; border: none; cursor: pointer; text-transform: uppercase; margin-bottom: 10px;
+        }
+        .btn-order { background: #fff; color: #000; }
+        .btn-order:hover { background: var(--gold); color: #000; }
+        .btn-whatsapp {
+            background: rgba(37, 211, 102, 0.1); color: #25D366; border: 1px solid #25D366;
+            display: flex; justify-content: center; align-items: center; gap: 10px;
+        }
+        .btn-whatsapp:hover { background: #25D366; color: #000; }
+
+        /* --- FOOTER --- */
+        footer { margin-top: 60px; padding: 40px 20px; text-align: center; background: #000; border-top: 1px solid rgba(212, 175, 55, 0.2); }
+        .signature { padding: 20px; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; display: inline-block; background: rgba(255,255,255,0.02); }
+        .signature p { font-size: 0.8rem; color: #666; text-transform: uppercase; letter-spacing: 2px; }
+        .signature h2 { font-family: 'Orbitron', sans-serif; font-size: 1.8rem; color: #fff; margin: 10px 0; letter-spacing: 2px; }
+        .signature h2 span { color: var(--gold); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand-name">NASSER LUXURY</div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <!-- Reliable MP4 Video + Poster image fallback if internet is slow -->
+        <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1600&q=80">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-set-of-blazers-on-hangers-43709-large.mp4" type="video/mp4">
+        </video>
+        <h1 class="hero-title">EXCLUSIVE COLLECTION</h1>
+    </section>
+
+    <div class="filters">
+        <button class="filter-btn active" onclick="_x(this, 'all')">ALL ITEMS</button>
+        <button class="filter-btn" onclick="_x(this, 'men')">MENSWEAR</button>
+        <button class="filter-btn" onclick="_x(this, 'women')">WOMENSWEAR</button>
+        <button class="filter-btn" onclick="_x(this, 'kids')">KIDS</button>
+    </div>
+
+    <div class="container">
+        <div class="products-grid" id="core-grid"></div>
+    </div>
+
+    <footer>
+        <div class="signature">
+            <p>Engineered & Developed By</p>
+            <h2>Eng. <span>Abdel Nasser</span></h2>
+            <p style="color: var(--gold); font-weight: bold;">Ramadan Kareem App Developer</p>
+        </div>
+    </footer>
+
+    <!-- OBFUSCATED & ENCRYPTED JS ENGINE -->
+    <script>
+        !function(){const _0x1a="201098227150",_0x1b=document.getElementById("core-grid");let _0x1c=[];const _0x1d=[{c:"men",n:"ROYAL EGYPTIAN SUIT",d:"بدلة تفصيل مصرية فاخرة، معروضة على المانيكان بدون أشخاص.",i:"https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=600&q=80",p:4500},{c:"men",n:"CLASSIC COTTON SHIRTS",d:"مجموعة قمصان قطن مصري 100% معروضة على الشماعة.",i:"https://images.unsplash.com/photo-1626497764746-6f8c8641050e?auto=format&fit=crop&w=600&q=80",p:1200},{c:"men",n:"PREMIUM LEATHER SHOES",d:"حذاء رجالي كلاسيك من الجلد الطبيعي الأصلي.",i:"https://images.unsplash.com/photo-1614252232525-a111a4310115?auto=format&fit=crop&w=600&q=80",p:2100},{c:"men",n:"VINTAGE LEATHER JACKET",d:"جاكيت جلد طبيعي بتصميم عصري (قالب عرض).",i:"https://images.unsplash.com/photo-1611312449408-fcece27cdbb7?auto=format&fit=crop&w=600&q=80",p:3500},{c:"women",n:"LUXURY LEATHER HANDBAG",d:"حقيبة يد نسائية بتصميم عالمي وخامات ممتازة.",i:"https://images.unsplash.com/photo-1584916201218-f4242ceb4809?auto=format&fit=crop&w=600&q=80",p:2800},{c:"women",n:"ELEGANT EVENING HEELS",d:"حذاء كعب عالي للسهرات والمناسبات الراقية.",i:"https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=600&q=80",p:1800},{c:"women",n:"EVENING GOWN",d:"فستان سهرة معروض على شماعة لتوضيح تفاصيل التصميم.",i:"https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=600&q=80",p:4200},{c:"women",n:"DESIGNER CLUTCH",d:"حقيبة سهرة صغيرة مرصعة بتفاصيل فاخرة.",i:"https://images.unsplash.com/photo-1608228079968-c7681eaef839?auto=format&fit=crop&w=600&q=80",p:1900},{c:"kids",n:"KIDS SUMMER OUTFIT",d:"طقم خروج للأطفال خامة قطن مريحة (عرض مسطح).",i:"https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&w=600&q=80",p:850},{c:"kids",n:"TODDLER SNEAKERS",d:"حذاء رياضي للأطفال مصمم لدعم راحة القدم.",i:"https://images.unsplash.com/photo-1514989940723-e8e51635b782?auto=format&fit=crop&w=600&q=80",p:650}];for(let i=1;i<=50;i++){let _0x1e=_0x1d[i%_0x1d.length];_0x1c.push({id:i,cat:_0x1e.c,name:`${_0x1e.n} - VOL.${i}`,desc:_0x1e.d,img:_0x1e.i,price:_0x1e.p+Math.floor(Math.random()*500)})}window._x=function(_0x1f,_0x20){document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active")),_0x1f.classList.add("active"),_0x1b.innerHTML="";let _0x21="all"===_0x20?_0x1c:_0x1c.filter(p=>p.cat===_0x20);_0x21.forEach(p=>{let _0x22=encodeURIComponent(`Hello NASSER LUXURY, I want to order (${p.name}) for ${p.price} EGP`);_0x1b.innerHTML+=`<div class="glass-card"><div class="image-container"><img src="${p.img}" alt="Product Mockup" class="product-img" loading="lazy"></div><h2 class="product-title">${p.name}</h2><p class="product-desc">${p.desc}</p><div class="product-price">${p.price.toLocaleString()} EGP</div><button class="btn btn-order">ADD TO CART</button><a href="https://wa.me/${_0x1a}?text=${_0x22}" target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp" style="font-size:1.2rem;"></i> WHATSAPP ORDER</a></div>`})},window._x(document.querySelector(".filter-btn"),"all")}();
+    </script>
+</body>
+</html>
+
