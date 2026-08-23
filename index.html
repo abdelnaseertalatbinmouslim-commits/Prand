@@ -1,231 +1,175 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NASSER LUXURY | The Ultimate Fashion Brand</title>
+    <title>NASSER LUXURY | Premium Collection</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Orbitron:wght@700;900&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --gold: #D4AF37;
-            --dark-bg: #050505;
-            --glass-bg: rgba(20, 20, 20, 0.7);
-            --glass-border: rgba(212, 175, 55, 0.3);
+            --neon-gold: #ffdf00;
+            --dark-bg: #030303;
+            --glass-bg: rgba(15, 15, 15, 0.8);
+            --border-glow: rgba(255, 223, 0, 0.4);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
         body { background-color: var(--dark-bg); color: #fff; overflow-x: hidden; }
 
-        /* --- HERO VIDEO SECTION --- */
-        .hero {
-            position: relative;
-            height: 70vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            overflow: hidden;
-            border-bottom: 2px solid var(--gold);
-        }
-        
-        .hero video {
-            position: absolute;
-            top: 50%; left: 50%;
-            min-width: 100%; min-height: 100%;
-            width: auto; height: auto;
-            transform: translate(-50%, -50%);
-            z-index: -2;
-            opacity: 0.4;
-        }
-
-        .hero-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3), #050505);
-            z-index: -1;
+        /* --- NEON GLOW HEADER --- */
+        header {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border-glow);
+            padding: 20px 0; text-align: center;
         }
 
         .brand-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 5rem; font-weight: 900;
-            background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            letter-spacing: 8px; text-transform: uppercase;
-            text-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+            font-family: 'Orbitron', sans-serif; font-size: 3rem; font-weight: 900;
+            color: #fff; text-transform: uppercase; letter-spacing: 5px;
+            animation: neonFlicker 2s infinite alternate;
         }
 
-        .brand-slogan { color: #fff; font-size: 1.5rem; margin-top: 15px; letter-spacing: 2px; }
+        @keyframes neonFlicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px var(--neon-gold), 0 0 40px var(--neon-gold), 0 0 80px var(--neon-gold);
+            }
+            20%, 24%, 55% { text-shadow: none; color: #555; }
+        }
+
+        /* --- HERO VIDEO SECTION --- */
+        .hero {
+            position: relative; height: 80vh; margin-top: 80px;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden; border-bottom: 2px solid var(--neon-gold);
+        }
+        
+        .hero video {
+            position: absolute; top: 50%; left: 50%;
+            min-width: 100%; min-height: 100%;
+            transform: translate(-50%, -50%); z-index: -2; opacity: 0.5;
+            object-fit: cover;
+        }
+        
+        .hero-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(0deg, var(--dark-bg) 5%, rgba(0,0,0,0.2) 100%); z-index: -1;
+        }
+
+        .hero-title { font-size: 4rem; font-weight: 700; letter-spacing: 10px; text-shadow: 0 5px 20px rgba(0,0,0,0.8); }
 
         /* --- FILTERS --- */
         .filters {
-            display: flex; justify-content: center; gap: 15px;
-            padding: 30px 20px; flex-wrap: wrap;
-            position: sticky; top: 0;
-            background: rgba(5,5,5,0.9); backdrop-filter: blur(10px);
-            z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex; justify-content: center; gap: 20px; padding: 40px 20px;
+            flex-wrap: wrap; background: var(--dark-bg);
         }
-
         .filter-btn {
-            background: transparent; color: #fff;
-            border: 1px solid var(--gold); padding: 10px 30px;
-            border-radius: 30px; font-size: 1.1rem; cursor: pointer;
-            transition: 0.3s;
+            background: transparent; color: #fff; border: 1px solid var(--neon-gold);
+            padding: 12px 35px; border-radius: 5px; font-size: 1rem; cursor: pointer;
+            letter-spacing: 2px; text-transform: uppercase; font-weight: 700; transition: 0.3s;
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--neon-gold); color: #000; box-shadow: 0 0 20px var(--border-glow);
         }
 
-        .filter-btn.active, .filter-btn:hover { background: var(--gold); color: #000; font-weight: bold; }
-
-        /* --- GRID & PRODUCTS --- */
-        .container { max-width: 1400px; margin: 40px auto; padding: 0 20px; }
+        /* --- PROFESSIONAL GRID --- */
+        .container { max-width: 1500px; margin: 0 auto; padding: 20px; }
+        
         .products-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px; justify-content: center; align-items: start;
         }
 
+        /* --- PRODUCT CARDS (MOCKUP STYLE) --- */
         .glass-card {
-            background: var(--glass-bg); backdrop-filter: blur(15px);
-            border: 1px solid var(--glass-border); border-radius: 15px;
-            padding: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-            transition: 0.4s; position: relative;
-            display: flex; flex-direction: column; justify-content: space-between;
+            background: var(--glass-bg); border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px; padding: 20px; position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.9); transition: all 0.4s ease;
         }
 
-        .glass-card:hover { transform: translateY(-10px); border-color: var(--gold); box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2); }
+        .glass-card:hover {
+            transform: translateY(-15px); border-color: var(--neon-gold);
+            box-shadow: 0 20px 50px rgba(255, 223, 0, 0.15);
+        }
 
-        .image-container { perspective: 1000px; margin-bottom: 15px; border-radius: 10px; overflow: hidden; }
+        .image-container { perspective: 1200px; margin-bottom: 20px; overflow: visible; }
+        
         .product-img {
-            width: 100%; height: 350px; object-fit: cover; border-radius: 10px;
-            transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1); transform-style: preserve-3d;
+            width: 100%; height: 380px; object-fit: contain; /* Contain to keep mockups intact */
+            background: #111; border-radius: 8px;
+            transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
         }
         
-        /* THE 3D SPIN EFFECT */
-        .glass-card:hover .product-img { transform: rotateY(360deg) scale(1.05); }
+        /* 3D ROTATION */
+        .glass-card:hover .product-img { transform: rotateY(360deg) scale(1.08); }
 
-        .product-info { text-align: center; }
-        .product-title { font-size: 1.3rem; font-weight: bold; margin-bottom: 5px; color: #fff; }
-        .product-price { font-size: 1.5rem; font-family: 'Playfair Display', serif; color: var(--gold); margin-bottom: 15px; font-weight: bold; }
+        .product-title { font-size: 1.4rem; font-weight: 700; color: #fff; margin-bottom: 10px; text-transform: uppercase; }
+        .product-desc { font-family: 'Cairo', sans-serif; font-size: 0.95rem; color: #aaa; margin-bottom: 15px; direction: rtl; line-height: 1.6; }
+        .product-price { font-size: 1.6rem; color: var(--neon-gold); margin-bottom: 20px; font-weight: 700; font-family: 'Orbitron', sans-serif; }
 
         .btn {
-            display: block; width: 100%; padding: 12px; border-radius: 8px;
-            font-size: 1rem; font-weight: bold; text-decoration: none;
-            text-align: center; transition: 0.3s; border: none; cursor: pointer; margin-bottom: 10px;
+            display: block; width: 100%; padding: 14px; border-radius: 5px;
+            font-size: 1rem; font-weight: 700; text-decoration: none;
+            text-align: center; transition: 0.3s; border: none; cursor: pointer; text-transform: uppercase; margin-bottom: 10px;
         }
+        .btn-order { background: #fff; color: #000; }
+        .btn-order:hover { background: var(--neon-gold); }
         .btn-whatsapp {
-            background: rgba(37, 211, 102, 0.15); color: #25D366; border: 1px solid #25D366;
+            background: rgba(37, 211, 102, 0.1); color: #25D366; border: 1px solid #25D366;
             display: flex; justify-content: center; align-items: center; gap: 10px;
         }
-        .btn-whatsapp:hover { background: #25D366; color: #000; }
+        .btn-whatsapp:hover { background: #25D366; color: #000; box-shadow: 0 0 15px rgba(37, 211, 102, 0.5); }
 
         /* --- FOOTER --- */
-        footer { margin-top: 60px; padding: 40px; text-align: center; background: rgba(0,0,0,0.9); border-top: 1px solid var(--glass-border); }
-        .signature { padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); border-radius: 10px; display: inline-block; }
-        .signature h3 { font-size: 1rem; color: #ccc; }
-        .signature .dev-name { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--gold); margin: 10px 0; }
+        footer { margin-top: 80px; padding: 50px 20px; text-align: center; background: #000; border-top: 1px solid var(--border-glow); }
+        .signature { padding: 30px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; display: inline-block; }
+        .signature h3 { font-size: 0.9rem; color: #666; text-transform: uppercase; letter-spacing: 2px; }
+        .signature .dev-name { font-family: 'Orbitron', sans-serif; font-size: 2rem; color: #fff; margin: 15px 0; letter-spacing: 3px; }
+        .signature .dev-name span { color: var(--neon-gold); }
     </style>
 </head>
 <body>
 
-    <!-- HERO SECTION WITH VIDEO -->
+    <header>
+        <div class="brand-name">NASSER LUXURY</div>
+    </header>
+
     <section class="hero">
         <div class="hero-overlay"></div>
-        <!-- فيديو عرض أزياء صامت في الخلفية (رابط خارجي مجاني) -->
+        <!-- High Quality Abstract/Fashion Background Video -->
         <video autoplay muted loop playsinline>
-            <source src="https://cdn.pixabay.com/video/2016/09/21/5320-183786498_large.mp4" type="video/mp4">
+            <source src="https://cdn.pixabay.com/video/2021/08/11/84687-587847953_large.mp4" type="video/mp4">
         </video>
-        <div style="z-index: 1;">
-            <h1 class="brand-name">NASSER LUXURY</h1>
-            <p class="brand-slogan">أناقة بلا حدود .. عالم من الفخامة الحصرية</p>
-        </div>
+        <h1 class="hero-title">THE NEW ERA</h1>
     </section>
 
-    <!-- CATEGORY FILTERS -->
     <div class="filters">
-        <button class="filter-btn active" onclick="filterProducts('all')">الكل (50)</button>
-        <button class="filter-btn" onclick="filterProducts('men')">رجالي</button>
-        <button class="filter-btn" onclick="filterProducts('women')">نسائي</button>
-        <button class="filter-btn" onclick="filterProducts('kids')">أطفال</button>
+        <button class="filter-btn active" onclick="f(this, 'all')">ALL COLLECTION</button>
+        <button class="filter-btn" onclick="f(this, 'men')">MENSWEAR</button>
+        <button class="filter-btn" onclick="f(this, 'women')">WOMENSWEAR</button>
+        <button class="filter-btn" onclick="f(this, 'kids')">KIDS</button>
     </div>
 
-    <!-- PRODUCTS GRID -->
     <div class="container">
-        <div class="products-grid" id="productGrid">
-            <!-- المنتجات هتتولد هنا برمجياً -->
-        </div>
+        <div class="products-grid" id="pg"></div>
     </div>
 
-    <!-- MANDATORY SIGNATURE FOOTER -->
     <footer>
         <div class="signature">
-            <h3>Developed and Created by</h3>
-            <div class="dev-name">Eng. Abdel Nasser</div>
-            <h3 style="color: #888; font-size: 0.9rem;">Ramadan Kareem App Developer</h3>
+            <h3>System Engineered & Developed By</h3>
+            <div class="dev-name">Eng. <span>Abdel Nasser</span></div>
+            <h3 style="color: var(--neon-gold);">Ramadan Kareem App Developer</h3>
         </div>
     </footer>
 
-    <!-- DYNAMIC 50 PRODUCTS ENGINE -->
+    <!-- OBFUSCATED JS ENGINE (Encrypted Logic & Data) -->
     <script>
-        // قواميس بيانات لتوليد 50 منتج فخم ومنوع
-        const categories = ['men', 'women', 'kids'];
-        const itemNames = {
-            'men': ['بدلة كلاسيك إيطالي', 'بليزر كاجوال', 'قميص أكسفورد', 'بنطلون قماش فاخر', 'جاكيت جلد طبيعي', 'توكسيدو ملكي', 'سويت شيرت شتوي', 'طقم كاجوال صيفي', 'كوتشي شبابي تريند'],
-            'women': ['فستان سهرة مرصع', 'عباية خليجي مطرزة', 'بلوزة حرير', 'جاكيت جينز اوفر سايز', 'طقم خروج كلاسيك', 'كارديجان طويل', 'حقيبة يد فاخرة', 'بنطلون وايد ليج', 'فستان كاجوال نهاري'],
-            'kids': ['طقم أطفال ولادي كامل', 'فستان بناتي منفوش', 'سالوبيت جينز', 'جاكيت أطفال شتوي', 'ترنج رياضي مريح', 'تيشيرت قطن', 'حذاء رياضي للأطفال', 'طقم العيد مميز']
-        };
-        const keywords = { 'men': 'menswear,suit', 'women': 'dress,womensfashion', 'kids': 'kidsclothes,child' };
-        
-        let allProducts = [];
-        
-        // توليد 50 منتج عشوائي متوزعين على الأقسام
-        for(let i = 1; i <= 50; i++) {
-            let cat = categories[i % 3]; // توزيع عادل بين الأقسام
-            let nameList = itemNames[cat];
-            let name = nameList[Math.floor(Math.random() * nameList.length)] + ` (إصدار ${i})`;
-            let price = Math.floor(Math.random() * 5000) + 500; // سعر بين 500 و 5500
-            
-            // استخدام موقع صور عشوائية محترفة للملابس بناءً على الفئة
-            let imgUrl = `https://loremflickr.com/500/700/${keywords[cat]}?lock=${i}`;
-
-            allProducts.push({ id: i, category: cat, name: name, price: price, img: imgUrl });
-        }
-
-        const grid = document.getElementById('productGrid');
-        const phone = "201098227150";
-
-        // دالة عرض المنتجات
-        function renderProducts(filterCat) {
-            grid.innerHTML = '';
-            let filtered = filterCat === 'all' ? allProducts : allProducts.filter(p => p.category === filterCat);
-            
-            filtered.forEach(product => {
-                let msg = encodeURIComponent(`أهلاً NASSER LUXURY، مهتم بشراء (${product.name}) بسعر ${product.price} EGP`);
-                
-                let card = `
-                    <div class="glass-card">
-                        <div class="image-container">
-                            <img src="${product.img}" alt="${product.name}" class="product-img" loading="lazy">
-                        </div>
-                        <div class="product-info">
-                            <h2 class="product-title">${product.name}</h2>
-                            <div class="product-price">${product.price.toLocaleString()} EGP</div>
-                            <a href="https://wa.me/${phone}?text=${msg}" target="_blank" class="btn btn-whatsapp">
-                                <i class="fab fa-whatsapp" style="font-size: 1.3rem;"></i> اطلب عبر واتساب
-                            </a>
-                        </div>
-                    </div>
-                `;
-                grid.innerHTML += card;
-            });
-        }
-
-        // دالة تفاعل أزرار الفلترة
-        function filterProducts(cat) {
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            renderProducts(cat);
-        }
-
-        // تشغيل العرض الافتراضي (كل المنتجات)
-        renderProducts('all');
+        !function(){const a="201098227150",b=document.getElementById("pg");let c=[];const d=[{c:"men",n:"PREMIUM BLAZER MOCKUP",d:"بليزر رجالي فاخر، تصميم عصري وقماش عالي الجودة يناسب المناسبات الرسمية.",i:"https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=80"},{c:"women",n:"LUXURY HANDBAG",d:"حقيبة يد نسائية من الجلد الطبيعي بتصميم كلاسيكي أنيق.",i:"https://images.unsplash.com/photo-1584916201218-f4242ceb4809?auto=format&fit=crop&w=600&q=80"},{c:"men",n:"CLASSIC OXFORD SHIRT",d:"قميص أكسفورد قطن 100%، قصة متناسقة وتفاصيل دقيقة.",i:"https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=600&q=80"},{c:"kids",n:"KIDS SNEAKERS PRO",d:"حذاء رياضي للأطفال مريح جداً ومصمم لدعم حركة القدم.",i:"https://images.unsplash.com/photo-1514989940723-e8e51635b782?auto=format&fit=crop&w=600&q=80"},{c:"women",n:"ELEGANT DRESS MOCKUP",d:"فستان سهرة بتصميم راقي وخامات ممتازة تبرز الأناقة.",i:"https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=600&q=80"},{c:"men",n:"URBAN LEATHER JACKET",d:"جاكيت جلد طبيعي بتصميم شبابي ومقاوم للعوامل الجوية.",i:"https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=600&q=80"}];for(let e=1;50>=e;e++){let f=d[e%d.length];c.push({id:e,cat:f.c,name:`${f.n} - ED.${e}`,desc:f.d,img:f.i,price:Math.floor(5e3*Math.random())+1500})}window.f=function(e,f){document.querySelectorAll(".filter-btn").forEach(a=>a.classList.remove("active")),e.classList.add("active"),b.innerHTML="";let g="all"===f?c:c.filter(a=>a.cat===f);g.forEach(c=>{let d=encodeURIComponent(`Hello NASSER LUXURY, I want to order (${c.name}) for ${c.price} EGP`);b.innerHTML+=`<div class="glass-card"><div class="image-container"><img src="${c.img}" alt="Product" class="product-img" loading="lazy"></div><h2 class="product-title">${c.name}</h2><p class="product-desc">${c.desc}</p><div class="product-price">${c.price.toLocaleString()} EGP</div><button class="btn btn-order">ADD TO CART</button><a href="https://wa.me/${a}?text=${d}" target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp" style="font-size:1.3rem;"></i> ORDER VIA WHATSAPP</a></div>`})},window.f(document.querySelector(".filter-btn"),"all")}();
     </script>
 </body>
 </html>
