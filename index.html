@@ -1,0 +1,511 @@
+here<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عبده ستور | ABDO STORE - 4K Cyber Luxury</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --gold: #e2b714;
+            --gold-glow: rgba(226, 183, 20, 0.45);
+            --cyan: #00f3ff;
+            --glass: rgba(12, 16, 28, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.12);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+
+        body {
+            background: #030508;
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Ambient Dynamic Background */
+        .ambient-bg {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: radial-gradient(circle at 20% 20%, rgba(226, 183, 20, 0.1) 0%, transparent 45%),
+                        radial-gradient(circle at 80% 80%, rgba(0, 243, 255, 0.08) 0%, transparent 45%);
+            z-index: -2; pointer-events: none;
+        }
+
+        #light-tracker {
+            position: fixed; width: 450px; height: 450px;
+            background: radial-gradient(circle, rgba(226, 183, 20, 0.12) 0%, transparent 70%);
+            border-radius: 50%; pointer-events: none;
+            transform: translate(-50%, -50%); z-index: -1; transition: 0.08s ease-out;
+        }
+
+        .glass-panel {
+            background: var(--glass);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+        }
+
+        /* Top Bar Info */
+        .top-info-bar {
+            background: rgba(0, 0, 0, 0.85);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 8px 20px;
+            font-size: 0.88rem;
+            color: var(--gold);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            z-index: 1001;
+            position: relative;
+        }
+        .top-info-bar div { display: flex; align-items: center; gap: 8px; }
+        .top-info-bar a { color: #fff; text-decoration: none; font-weight: bold; }
+
+        /* Header */
+        header {
+            position: sticky; top: 15px; z-index: 1000;
+            max-width: 1400px; margin: 10px auto; padding: 15px 30px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .brand-logo {
+            font-size: 1.8rem; font-weight: 900;
+            background: linear-gradient(135deg, #fff, var(--gold));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+
+        nav ul { display: flex; list-style: none; gap: 25px; }
+        nav a {
+            color: #ccc; text-decoration: none; font-size: 0.95rem; font-weight: 700;
+            transition: 0.3s;
+        }
+        nav a:hover, nav a.active { color: var(--gold); text-shadow: 0 0 10px var(--gold-glow); }
+
+        .nav-actions { display: flex; gap: 15px; align-items: center; }
+        .action-btn {
+            background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border);
+            color: #fff; width: 42px; height: 42px; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            cursor: pointer; position: relative; transition: 0.3s;
+        }
+        .action-btn:hover { border-color: var(--gold); box-shadow: 0 0 15px var(--gold-glow); transform: scale(1.05); }
+        .badge {
+            position: absolute; top: -5px; right: -5px; background: var(--gold);
+            color: #000; font-size: 0.75rem; font-weight: 900; width: 20px; height: 20px;
+            border-radius: 50%; display: flex; justify-content: center; align-items: center;
+        }
+
+        /* 3D Orbit Hero Showcase Section */
+        .hero-orbit-section {
+            max-width: 1400px; margin: 30px auto; padding: 40px 20px;
+            display: flex; flex-direction: column; align-items: center; position: relative;
+        }
+
+        .orbit-container {
+            position: relative; width: 380px; height: 380px;
+            display: flex; justify-content: center; align-items: center;
+            perspective: 1000px;
+        }
+
+        .orbit-ring {
+            position: absolute; width: 100%; height: 100%;
+            border: 2px dashed rgba(226, 183, 20, 0.4); border-radius: 50%;
+            animation: rotateRing 20s linear infinite;
+        }
+        @keyframes rotateRing { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        .orbit-ring-text {
+            position: absolute; width: 115%; height: 115%;
+            border-radius: 50%; animation: rotateRing 30s linear infinite reverse;
+            display: flex; justify-content: center; align-items: center;
+        }
+        .orbit-ring-text span {
+            position: absolute; font-size: 0.75rem;
+            color: var(--gold); letter-spacing: 2px; font-weight: 800; text-transform: uppercase;
+        }
+
+        .central-product-card {
+            width: 270px; height: 350px; position: relative;
+            transform-style: preserve-3d; transition: transform 0.1s ease-out;
+            border-radius: 20px; overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.9), 0 0 35px var(--gold-glow);
+        }
+        .central-product-card img, .central-product-card video {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+        .center-tag {
+            position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
+            background: rgba(0,0,0,0.85); backdrop-filter: blur(10px);
+            padding: 6px 18px; border-radius: 30px; border: 1px solid var(--gold);
+            font-size: 0.8rem; color: #fff; text-align: center; white-space: nowrap; font-weight: 700;
+        }
+
+        /* Video Showcase Banner */
+        .video-banner-container {
+            max-width: 1400px; margin: 20px auto 40px; padding: 0 20px;
+        }
+        .video-card {
+            width: 100%; height: 260px; border-radius: 20px; overflow: hidden; position: relative;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .video-card video {
+            width: 100%; height: 100%; object-fit: cover; filter: brightness(0.6);
+        }
+        .video-overlay {
+            position: absolute; text-align: center; z-index: 2;
+        }
+        .video-overlay h3 { font-size: 1.8rem; color: #fff; text-shadow: 0 0 15px rgba(0,0,0,0.8); }
+        .video-overlay p { color: var(--gold); font-size: 1rem; font-weight: 700; }
+
+        /* Catalogue Filters & Grid */
+        .section-header {
+            max-width: 1400px; margin: 40px auto 25px; padding: 0 20px;
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;
+        }
+        .section-title h2 {
+            font-size: 2rem; letter-spacing: 1px;
+            background: linear-gradient(90deg, #fff, var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .category-filters { display: flex; gap: 10px; flex-wrap: wrap; }
+        .filter-btn {
+            background: transparent; border: 1px solid var(--glass-border); color: #aaa;
+            padding: 8px 18px; border-radius: 30px; font-weight: 700; cursor: pointer; transition: 0.3s;
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--gold); color: #000; border-color: var(--gold);
+            box-shadow: 0 0 15px var(--gold-glow);
+        }
+
+        .products-grid {
+            max-width: 1400px; margin: 0 auto; padding: 0 20px;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px;
+            perspective: 1200px;
+        }
+
+        .product-card {
+            padding: 18px; border-radius: 20px; position: relative;
+            transform-style: preserve-3d; transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+            cursor: pointer; overflow: hidden;
+        }
+        .product-card:hover {
+            transform: rotateY(-8deg) rotateX(4deg) translateY(-8px);
+            border-color: var(--gold); box-shadow: 0 20px 40px rgba(0,0,0,0.9), 0 0 25px var(--gold-glow);
+        }
+
+        .media-container {
+            width: 100%; height: 330px; border-radius: 14px; overflow: hidden;
+            position: relative; margin-bottom: 15px; background: #080c14;
+        }
+        .media-container img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
+        .product-card:hover .media-container img { transform: scale(1.08); }
+
+        .badge-360 {
+            position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.8);
+            border: 1px solid var(--gold); color: var(--gold); font-size: 0.7rem;
+            font-weight: 800; padding: 4px 10px; border-radius: 20px; backdrop-filter: blur(5px);
+        }
+
+        .product-details h3 { font-size: 1.15rem; margin-bottom: 5px; font-weight: 700; }
+        .product-details p { color: #888; font-size: 0.82rem; margin-bottom: 12px; line-height: 1.4; }
+
+        .card-footer { display: flex; justify-content: space-between; align-items: center; }
+        .price { font-size: 1.25rem; font-weight: 800; color: var(--gold); }
+        .add-cart-btn {
+            background: linear-gradient(135deg, var(--gold), #b89108);
+            border: none; color: #000; padding: 10px 16px; border-radius: 10px;
+            font-weight: 800; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 6px;
+        }
+        .add-cart-btn:hover { transform: scale(1.05); box-shadow: 0 0 15px var(--gold-glow); }
+
+        /* Cart Modal */
+        .cart-modal {
+            position: fixed; top: 0; left: -450px; width: 380px; height: 100vh;
+            background: rgba(5, 8, 15, 0.96); backdrop-filter: blur(25px);
+            border-right: 1px solid var(--glass-border); z-index: 2000;
+            padding: 25px; display: flex; flex-direction: column; transition: 0.5s ease;
+        }
+        .cart-modal.open { left: 0; }
+        .cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+        .cart-items { flex-grow: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; }
+        .cart-item {
+            display: flex; gap: 12px; background: rgba(255,255,255,0.03);
+            padding: 10px; border-radius: 10px; border: 1px solid var(--glass-border); align-items: center;
+        }
+        .cart-item img { width: 60px; height: 70px; object-fit: cover; border-radius: 8px; }
+        .cart-checkout-btn {
+            width: 100%; padding: 14px; background: var(--gold); border: none;
+            color: #000; font-weight: 900; font-size: 1rem;
+            border-radius: 10px; cursor: pointer; margin-top: 15px; transition: 0.3s;
+        }
+        .cart-checkout-btn:hover { box-shadow: 0 0 20px var(--gold-glow); }
+
+        footer {
+            max-width: 1400px; margin: 80px auto 30px; padding: 30px;
+            text-align: center; border-top: 1px solid var(--glass-border);
+        }
+        .footer-sig { font-size: 1.1rem; letter-spacing: 1px; color: #fff; }
+        .footer-sig span { color: var(--gold); font-weight: 800; }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-bg"></div>
+    <div id="light-tracker"></div>
+
+    <!-- Top Info Bar -->
+    <div class="top-info-bar">
+        <div><i class="fas fa-map-marker-alt"></i> أسيوط - شارع الجمهورية - سنتر رويال</div>
+        <div><i class="fas fa-phone-alt"></i> <a href="tel:01098227150">01098227150</a></div>
+    </div>
+
+    <!-- Header -->
+    <header class="glass-panel">
+        <div class="brand-logo">عبده ستور | ABDO STORE</div>
+        <nav>
+            <ul>
+                <li><a href="#" class="active" onclick="filterCategory('all', event)">الكل</a></li>
+                <li><a href="#" onclick="filterCategory('suits', event)">بدل رجالي</a></li>
+                <li><a href="#" onclick="filterCategory('men', event)">ملابس رجالي</a></li>
+                <li><a href="#" onclick="filterCategory('women', event)">ملابس حريمي</a></li>
+                <li><a href="#" onclick="filterCategory('kids', event)">أطفال</a></li>
+            </ul>
+        </nav>
+        <div class="nav-actions">
+            <div class="action-btn" id="cart-toggle">
+                <i class="fas fa-shopping-bag"></i>
+                <div class="badge" id="cart-count">0</div>
+            </div>
+            <div class="action-btn" onclick="alert('عبده ستور - أسيوط شارع الجمهورية')">
+                <i class="fas fa-store"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- 3D Hero Orbit Section -->
+    <section class="hero-orbit-section">
+        <div class="orbit-container">
+            <div class="orbit-ring"></div>
+            <div class="orbit-ring-text">
+                <span style="transform: rotate(0deg) translate(190px) rotate(0deg);">ABDO STORE 4K</span>
+                <span style="transform: rotate(90deg) translate(190px) rotate(-90deg);">ROYAL CENTER</span>
+                <span style="transform: rotate(180deg) translate(190px) rotate(-180deg);">360 SHOWCASE</span>
+                <span style="transform: rotate(270deg) translate(190px) rotate(-270deg);">ENG ABDELNASSER</span>
+            </div>
+
+            <div class="central-product-card glass-panel" id="hero-interactive-card">
+                <!-- Direct file reference requested -->
+                <img src="image_1787333488674.jpg" id="hero-img" alt="عبده ستور 360" onerror="this.src='https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?auto=format&fit=crop&w=800&q=80'">
+                <div class="center-tag">عرض 360° • عبده ستور 4K</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dynamic Video Showcase Section -->
+    <div class="video-banner-container">
+        <div class="video-card glass-panel">
+            <video autoplay loop muted playsinline poster="image_1787333488674.jpg">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-fashion-model-in-a-black-suit-41564-large.mp4" type="video/mp4">
+            </video>
+            <div class="video-overlay">
+                <h3>تشكيلة أزياء 2026 الحصرية</h3>
+                <p>سنتر رويال - شارع الجمهورية - أسيوط</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Catalogue Header -->
+    <div class="section-header">
+        <div class="section-title">
+            <h2>كتالوج المنتجات (20 منتج)</h2>
+        </div>
+        <div class="category-filters">
+            <button class="filter-btn active" onclick="filterCategory('all', event)">الكل (20)</button>
+            <button class="filter-btn" onclick="filterCategory('suits', event)">بدل فاخرة</button>
+            <button class="filter-btn" onclick="filterCategory('men', event)">رجالي</button>
+            <button class="filter-btn" onclick="filterCategory('women', event)">حريمي</button>
+            <button class="filter-btn" onclick="filterCategory('kids', event)">أطفال</button>
+        </div>
+    </div>
+
+    <!-- Products Grid -->
+    <section class="products-grid" id="product-grid"></section>
+
+    <!-- Shopping Cart Modal -->
+    <div class="cart-modal" id="cart-modal">
+        <div class="cart-header">
+            <h3 style="font-size: 1.3rem;">سلة المشتريات</h3>
+            <div class="action-btn" id="cart-close"><i class="fas fa-times"></i></div>
+        </div>
+        <div class="cart-items" id="cart-items-container">
+            <p style="color: #666; text-align: center; margin-top: 40px;">السلة فارغة حالياً.</p>
+        </div>
+        <div style="border-top: 1px solid var(--glass-border); padding-top: 15px; margin-top: 15px;">
+            <div style="display: flex; justify-content: space-between; font-size: 1.1rem; font-weight: 800;">
+                <span>الإجمالي:</span>
+                <span style="color: var(--gold);" id="cart-total">0 ج.م</span>
+            </div>
+            <button class="cart-checkout-btn" onclick="alert('تم إرسال الطلب لفرع عبده ستور بأسيوط شارع الجمهورية!')">إتمام الطلب</button>
+        </div>
+    </div>
+
+    <!-- Signature Footer -->
+    <footer class="glass-panel">
+        <div class="footer-sig">
+            تطوير وبرمجة <span>المهندس عبد الناصر</span>
+        </div>
+    </footer>
+
+    <script>
+        // Interactive Mouse Glow Tracker
+        document.addEventListener('mousemove', (e) => {
+            const tracker = document.getElementById('light-tracker');
+            tracker.style.left = e.clientX + 'px';
+            tracker.style.top = e.clientY + 'px';
+        });
+
+        // 20 Unique Clothing Items Catalogue
+        const products = [
+            // Suits (1-5)
+            { id: 1, name: 'بدلة تاكسيدو ملكي سهرة', category: 'suits', price: 13500, desc: 'تصميم إيطالي فاخر خامات صوف وحرير 4K.', img: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=800&q=80' },
+            { id: 2, name: 'بدلة كحلي كلاسيك رسمية', category: 'suits', price: 11200, desc: 'قصة سليم فيت ممتازة للمناسبات والعمل.', img: 'https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=800&q=80' },
+            { id: 3, name: 'سديري قطيفة زمردي', category: 'suits', price: 4800, desc: 'سديري رسمي مطرز بعناية للمناسبات.', img: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80' },
+            { id: 4, name: 'بنطال بدلة رمادي إيطالي', category: 'suits', price: 3900, desc: 'خامة صوف خفيف مريحة وراقية.', img: 'https://images.unsplash.com/photo-1479064555552-3ef4979f8908?auto=format&fit=crop&w=800&q=80' },
+            { id: 5, name: 'بليزر أسود كلاسيكي double-breasted', category: 'suits', price: 9800, desc: 'بليزر أزرار ذهبية ملكية.', img: 'https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?auto=format&fit=crop&w=800&q=80' },
+
+            // Men (6-10)
+            { id: 6, name: 'جاكيت جلد طبيعي بني', category: 'men', price: 8700, desc: 'جلد طبيعي فاخر ببطانة حرارية.', img: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=800&q=80' },
+            { id: 7, name: 'بالطو جوخ جملي طويل', category: 'men', price: 9500, desc: 'تصميم شتوي أنيق لخريف وشتاء 2026.', img: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=800&q=80' },
+            { id: 8, name: 'قميص أبيض قطن مصري', category: 'men', price: 2400, desc: 'قطن 100% كلاسيكي رسميات.', img: 'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=800&q=80' },
+            { id: 9, name: 'جاكيت جينز كلاسيك', category: 'men', price: 3600, desc: 'جينز خامة ثقيلة معالجة.', img: 'https://images.unsplash.com/photo-1576995853123-5a10305d93c0?auto=format&fit=crop&w=800&q=80' },
+            { id: 10, name: 'بلوفر كشمير ناعم', category: 'men', price: 4200, desc: 'خامة صوف كشمير عالي الجودة.', img: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=800&q=80' },
+
+            // Women (11-15)
+            { id: 11, name: 'فستان سهرة حرير راقي', category: 'women', price: 11800, desc: 'تصميم هوت كوتور للمناسبات الراقية.', img: 'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=800&q=80' },
+            { id: 12, name: 'معطف جوخ شتوي حريمي', category: 'women', price: 10200, desc: 'قصة أنيقة بدفء عالي.', img: 'https://images.unsplash.com/photo-1539533018447-63fcce2678e3?auto=format&fit=crop&w=800&q=80' },
+            { id: 13, name: 'بلوزة حرير ناعمة', category: 'women', price: 4600, desc: 'تصميم أوفيس وكاجوال راقي.', img: 'https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?auto=format&fit=crop&w=800&q=80' },
+            { id: 14, name: 'هودي أوفر سايز قطن', category: 'women', price: 2800, desc: 'قطن ميلتون ثقيل ومريح.', img: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80' },
+            { id: 15, name: 'سويتر تريكو ناعم', category: 'women', price: 3200, desc: 'ألوان كلاسيكية أنيقة.', img: 'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=800&q=80' },
+
+            // Kids (16-20)
+            { id: 16, name: 'بليزر أطفال رسمي', category: 'kids', price: 3200, desc: 'تصميم أنيق للمناسبات والأعياد.', img: 'https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?auto=format&fit=crop&w=800&q=80' },
+            { id: 17, name: 'جاكيت شتوي ميبر أطفال', category: 'kids', price: 2100, desc: 'مبطن بالكامل للدفء في الشتاء.', img: 'https://images.unsplash.com/photo-1519457431-44ccd64a579b?auto=format&fit=crop&w=800&q=80' },
+            { id: 18, name: 'سويت شيرت قطني أطفال', category: 'kids', price: 1800, desc: 'قطن مريح جداً للبشرة.', img: 'https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?auto=format&fit=crop&w=800&q=80' },
+            { id: 19, name: 'تيشيرت مطبوع أطفال', category: 'kids', price: 1200, desc: 'طباعة عالية الجودة لا تتأثر بالغسيل.', img: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80' },
+            { id: 20, name: 'طقم جينز كاجوال أطفال', category: 'kids', price: 3500, desc: 'طقم كامل جاكيت وبنطال متناسق.', img: 'https://images.unsplash.com/photo-1542272604-780c36856d66?auto=format&fit=crop&w=800&q=80' }
+        ];
+
+        let cart = [];
+
+        function renderProducts(items) {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = '';
+
+            items.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'product-card glass-panel';
+                card.innerHTML = `
+                    <div class="media-container">
+                        <span class="badge-360"><i class="fas fa-sync-alt"></i> 360° PREVIEW</span>
+                        <img src="${item.img}" alt="${item.name}">
+                    </div>
+                    <div class="product-details">
+                        <h3>${item.name}</h3>
+                        <p>${item.desc}</p>
+                        <div class="card-footer">
+                            <div class="price">${item.price.toLocaleString()} ج.م</div>
+                            <button class="add-cart-btn" onclick="addToCart(${item.id})">
+                                <i class="fas fa-cart-plus"></i> إضافة
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterCategory(cat, e) {
+            if(e) {
+                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                e.target.classList.add('active');
+            }
+
+            if (cat === 'all') {
+                renderProducts(products);
+            } else {
+                const filtered = products.filter(p => p.category === cat);
+                renderProducts(filtered);
+            }
+        }
+
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            cart.push(product);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            document.getElementById('cart-count').innerText = cart.length;
+            const container = document.getElementById('cart-items-container');
+            const totalEl = document.getElementById('cart-total');
+
+            if (cart.length === 0) {
+                container.innerHTML = '<p style="color: #666; text-align: center; margin-top: 40px;">السلة فارغة حالياً.</p>';
+                totalEl.innerText = '0 ج.م';
+                return;
+            }
+
+            container.innerHTML = '';
+            let total = 0;
+
+            cart.forEach((item, idx) => {
+                total += item.price;
+                const div = document.createElement('div');
+                div.className = 'cart-item';
+                div.innerHTML = `
+                    <img src="${item.img}" alt="${item.name}">
+                    <div style="flex-grow: 1;">
+                        <h4 style="font-size: 0.9rem;">${item.name}</h4>
+                        <p style="color: var(--gold); font-weight: 800; margin-top: 3px;">${item.price.toLocaleString()} ج.م</p>
+                    </div>
+                    <i class="fas fa-trash" style="color: #ff4444; cursor: pointer;" onclick="removeFromCart(${idx})"></i>
+                `;
+                container.appendChild(div);
+            });
+
+            totalEl.innerText = total.toLocaleString() + ' ج.م';
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        document.getElementById('cart-toggle').addEventListener('click', () => {
+            document.getElementById('cart-modal').classList.add('open');
+        });
+        document.getElementById('cart-close').addEventListener('click', () => {
+            document.getElementById('cart-modal').classList.remove('open');
+        });
+
+        // 3D Card Tilt Effect
+        const centralCard = document.getElementById('hero-interactive-card');
+        document.addEventListener('mousemove', (e) => {
+            const x = (window.innerWidth / 2 - e.clientX) / 25;
+            const y = (window.innerHeight / 2 - e.clientY) / 25;
+            if(centralCard) {
+                centralCard.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+            }
+        });
+
+        renderProducts(products);
+    </script>
+</body>
+</html>
