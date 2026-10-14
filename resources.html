@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block title %}الأدوات والإضافات | Eng Abdelnaser{% endblock %}{% block content %}
+<section class="page-hero"><span class="section-kicker">DEVELOPER TOOLKIT</span><h1>أدوات تخلي شغلك <span class="gradient-text">أذكى.</span></h1><p>موارد للمبرمجين، إضافات، تعريفات، ومصادر تساعدك على التطوير.</p></section>
+<div class="resource-grid">{% for item in resources %}<article class="resource-card"><div class="resource-icon">{{ item.icon }}</div><span class="card-tag">{{ item.get_kind_display }}</span><h3>{{ item.title }}</h3><p>{{ item.description }}</p>{% if item.url %}<a class="text-link" href="{{ item.url }}" target="_blank" rel="noopener">افتح المورد ↗</a>{% endif %}</article>{% empty %}<div class="empty-state"><span>✦</span><h3>مساحة الأدوات جاهزة</h3><p>أضف الأدوات والإضافات والتعريفات من لوحة الإدارة.</p></div>{% endfor %}</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% load static %}
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090d1a">
+  <title>{% block title %}Eng Abdelnaser | أكاديمية البرمجة{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/site.css' %}">
+  <script defer src="{% static 'js/site.js' %}"></script>
+</head>
+<body>
+<div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+<header class="topbar">
+  <a class="brand" href="{% url 'home' %}"><span class="brand-mark">&lt;/&gt;</span><span><b>Eng Abdelnaser</b><small>CODE • CREATE • LEVEL UP</small></span></a>
+  <button class="menu-toggle" aria-label="فتح القائمة">☰</button>
+  <nav class="nav-links">
+    <a href="{% url 'home' %}">الرئيسية</a><a href="{% url 'courses' %}">الكورسات</a><a href="{% url 'snippets' %}">مكتبة الأكواد</a><a href="{% url 'resources' %}">الأدوات والإضافات</a><a href="{% url 'cv' %}">السيرة الذاتية</a>
+    {% if user.is_authenticated %}<a href="{% url 'dashboard' %}">لوحتي</a>{% if user.is_superuser or user.role == 'admin' or user.role == 'moderator' %}<a href="{% url 'staff' %}">الإدارة</a>{% endif %}<a class="nav-cta" href="{% url 'logout' %}">خروج</a>
+    {% else %}<a href="{% url 'login' %}">دخول</a><a class="nav-cta" href="{% url 'signup' %}">ابدأ الآن ↗</a>{% endif %}
+  </nav>
+</header>
+<main class="page-wrap">
+{% if messages %}<div class="messages">{% for message in messages %}<div class="message {{ message.tags }}">{{ message }}</div>{% endfor %}</div>{% endif %}
+{% block content %}{% endblock %}
+</main>
+<footer class="footer"><div class="footer-brand"><span class="brand-mark">&lt;/&gt;</span> Eng Abdelnaser</div><p>منصتك لتعلّم البرمجة وبناء المستقبل الرقمي.</p><div class="footer-links"><a href="https://www.facebook.com/cap.abdelnaseer.talat" target="_blank" rel="noopener">Facebook</a><a href="https://wa.me/201098227150" target="_blank" rel="noopener">WhatsApp</a></div><small>© {% now "Y" %} Eng Abdelnaser. جميع الحقوق محفوظة.</small></footer>
+</body></html>

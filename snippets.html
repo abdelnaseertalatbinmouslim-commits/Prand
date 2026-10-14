@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block title %}مكتبة الأكواد | Eng Abdelnaser{% endblock %}{% block content %}
+<section class="page-hero"><span class="section-kicker">CODE LIBRARY</span><h1>كود واضح. <span class="gradient-text">فكرة أقوى.</span></h1><p>أمثلة برمجية يمكنك قراءتها ونسخها للتجربة والتعلّم.</p></section>
+<div class="snippet-grid">{% for snippet in snippets %}<article class="snippet-card"><div class="snippet-top"><span class="lang-pill">{{ snippet.language }}</span><button class="copy-btn" data-copy="{{ snippet.code|escape }}">نسخ الكود</button></div><h3>{{ snippet.title }}</h3><p>{{ snippet.description }}</p><pre><code>{{ snippet.code }}</code></pre></article>{% empty %}<div class="empty-state"><span>{ }</span><h3>المكتبة في انتظار أول كود</h3><p>أضف الأكواد من لوحة الإدارة، وحدد اللغة والوصف.</p></div>{% endfor %}</div>
+{% endblock %}
